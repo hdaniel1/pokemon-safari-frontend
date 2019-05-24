@@ -9,7 +9,15 @@ class Pokemon {
     this.sprite_image = pokemon.sprite_image
   }
 
-  render() {
+  showInfo(event) {
+    let pokemonSpecies = this.species
+    let pokemonAbility = this.ability
+    let pokemonTypes = []
+    pokemonTypes.push(this.type_1, this.type_2)
+
+    debugger
+  }
+  render(event) {
     let pokemonContainer = document.querySelector("#pokemon_container")
     //create the elements
     let pokemonDiv = document.createElement("div")
@@ -21,8 +29,7 @@ class Pokemon {
     pokemonDiv.appendChild(pokemonSprite)
     pokemonContainer.appendChild(pokemonDiv)
     //add event listener to the pokemon
-    // pokemonDiv.addEventListener("click", this.showInfo.bind(this))
-
+    pokemonDiv.addEventListener("click", this.showInfo.bind(this))
   }
 
   static fetchPokemon(){
