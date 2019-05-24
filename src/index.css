@@ -1,0 +1,11 @@
+body {
+ width: 800px;
+ margin: auto;
+ text-align: center;
+ background-color: white;
+ background: url(https://images7.alphacoders.com/662/662102.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
