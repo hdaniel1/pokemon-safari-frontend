@@ -47,10 +47,6 @@ class Pokemon {
         pokemonInstance.render()
         return document.querySelectorAll(".pokemon-sprite")
     }))
-    .then(function(pokemonDivs){
-      //get all the pokemon divs and reformat them within the DOM
-      debugger
-    })
   }
 
   static all = []
