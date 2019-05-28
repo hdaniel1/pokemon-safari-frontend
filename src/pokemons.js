@@ -10,11 +10,28 @@ class Pokemon {
   }
 
   showInfo(event) {
-    // event.target.classList.add("modal")
-    let pokemonModal = document.querySelector(".modal")
-    pokemonModal.style.display = "block";
-
-
+    let modal = document.querySelector(".modal")
+    let pokemonModalHeader = document.querySelector(".modal-title")
+    let pokemonModalList = document.querySelector(".pokemon-info")
+    let pokemonModalImage = document.querySelector(".modal-image")
+    pokemonModalHeader.innerHTML = ""
+    pokemonModalList.innerHTML = ""
+    //create modal elements
+    let pokemonLiAbility = document.createElement('li')
+    let pokemonLiType1 = document.createElement('li')
+    let pokemonLiType2 = document.createElement('li')
+    let catchButton = document.createElement('button')
+    //add modal element info
+    pokemonModalHeader.innerText = this.species
+    pokemonLiAbility.innerHTML= `ABILITY: ${this.ability}`
+    pokemonLiType1.innerHTML = `TYPE 1: ${this.type_1}`
+    pokemonLiType2.innerHTML = `TYPE 2: ${this.type_2}`
+    catchButton.innerText = "Catch this Pokemon"
+    modal.style.display = "block"
+    pokemonModalImage.src = this.sprite_image
+    //append modal elements
+    pokemonModalHeader.prepend(pokemonModalImage)
+    pokemonModalList.append(pokemonLiAbility, pokemonLiType1, pokemonLiType2, catchButton)
   }
 
   assignNature() {
@@ -35,37 +52,15 @@ class Pokemon {
     //create the elements
     let pokemonDiv = document.createElement("div")
     let pokemonSprite = document.createElement("img")
-    let pokemonModal = document.createElement("div")
-    let pokemonModalHeader = document.createElement("h3")
-    let pokemonModalList = document.createElement('ul')
-    let pokemonLiAbility = document.createElement('li')
-    let pokemonLiType1 = document.createElement('li')
-    let pokemonLiType2 = document.createElement('li')
-    let catchButton = document.createElement('button')
-
-
     //add element info
     pokemonSprite.src = this.sprite_image
     pokemonSprite.classList.add("pokemon-sprite")
-    // pokemonSprite.classList.add("circle")
     pokemonSprite.dataset.pokemondId = this.id
-    pokemonSprite.dataset.nature = this.nature
-    pokemonModal.classList.add("modal")
-    pokemonModalHeader.innerText = this.species
-    pokemonLiAbility.innerHTML= `ABILITY: ${this.ability}`
-    pokemonLiType1.innerHTML = `TYPE 1: ${this.type_1}`
-    pokemonLiType2.innerHTML = `TYPE 2: ${this.type_2}`
-    catchButton.innerText = "Catch this Pokemon"
     //append elements to the dom
     pokemonDiv.appendChild(pokemonSprite)
     pokemonContainer.appendChild(pokemonDiv)
-    pokemonDiv.appendChild(pokemonModal)
-    pokemonModal.append(pokemonModalHeader, pokemonModalList, catchButton)
-    pokemonModalList.append(pokemonLiAbility, pokemonLiType1, pokemonLiType2)
-
     //add event listener to the pokemon
     pokemonDiv.addEventListener("click", this.showInfo.bind(this))
-    catchButton.addEventListener('click', this.catchPokemon.bind(this))
   }
 
 
