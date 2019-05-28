@@ -5,7 +5,6 @@ class Pokemon {
     this.type_1 = pokemon.type_1
     this.type_2 = pokemon.type_2
     this.ability = pokemon.ability
-    this.nature = pokemon.nature
     this.sprite_image = pokemon.sprite_image
     Pokemon.all.push(this)
   }
@@ -13,8 +12,14 @@ class Pokemon {
   showInfo(event) {
     let pokemonSpecies = this.species
     let pokemonAbility = this.ability
+    let pokemonNature = this.nature
     let pokemonTypes = []
     pokemonTypes.push(this.type_1, this.type_2)
+  }
+
+  assignNature() {
+    var nature = Nature.all[Math.floor(Math.random() * Nature.all.length)];
+    this.nature = nature.name
   }
 
   render(event) {
@@ -27,6 +32,7 @@ class Pokemon {
     pokemonSprite.classList.add("pokemon-sprite")
     pokemonSprite.classList.add("circle")
     pokemonSprite.dataset.pokemondId = this.id
+    pokemonSprite.dataset.nature = this.nature
     //append elements to the dom
     pokemonDiv.appendChild(pokemonSprite)
     pokemonContainer.appendChild(pokemonDiv)
@@ -36,9 +42,11 @@ class Pokemon {
 
   static fetchPokemon(){
     fetch("http://localhost:3000/pokemons")
+    .then(Nature.fetchNatures())
     .then(response => response.json())
     .then(pokemons => pokemons.forEach(pokemon => {
         let pokemonInstance = new Pokemon(pokemon)
+        pokemonInstance.assignNature()
         pokemonInstance.render()
     }))
   }
