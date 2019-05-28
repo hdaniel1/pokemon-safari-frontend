@@ -10,6 +10,10 @@ class Pokemon {
   }
 
   showInfo(event) {
+    document.querySelector('.close').addEventListener("click", function() {
+       document.querySelector('.modal').style.display = "none";
+    });
+
     let modal = document.querySelector(".modal")
     let pokemonModalHeader = document.querySelector(".modal-title")
     let pokemonModalList = document.querySelector(".pokemon-info")

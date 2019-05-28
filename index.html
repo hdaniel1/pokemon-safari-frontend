@@ -2,12 +2,12 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <!-- <img src="https://fontmeme.com/permalink/190525/143e3f6ef63b0ac60ba6aaf8a0b3dad8.png"> -->
-    <link rel="stylesheet" href="src/index.css">
+    <script type="text/javascript" src="src/trainer_pokemons.js"></script>
     <script type="text/javascript" src="src/trainers.js"></script>
     <script type="text/javascript" src="src/natures.js"></script>
     <script type="text/javascript" src="src/pokemons.js"></script>
     <script type="text/javascript" src="src/index.js"></script>
+    <link rel="stylesheet" href="src/index.css">
   </head>
   <body>
     <!-- <iframe src="assets/route_120.mp3" allow="autoplay" id="audio" style="display:none"></iframe> -->
@@ -20,27 +20,32 @@
     </header>
     <div class="topnav">
   <a class="change-type">Change Type</a>
-  <a href="#my-pokemon">My Pokemon</a>
-  <a href="#shuffle">Shuffle</a>
+  <a href="#my-pokemon" class="iframe" id="my-pokemon">My Pokemon</a>
+  <a href="#shuffle" id="shuffle">Shuffle</a>
   <a href="#about">About</a>
 </div>
     <main>
-      <div class="wrapper" id="pokemon_container"</div>
-        <div class = "modal">
+      <div class = "modal">
+        <div class="modal-content">
+          <div class="close">+</div>
+          <div class="modal-header">
+            <img class="modal-image" />
+            <h4 class="modal-title">Modal Header</h4>
+          </div>
+          <div class="modal-body">
+            <ul class="pokemon-info"></ul>
+          </div>
+          <div class="modal-footer">
+          </div>
+          </div>
+       </div>
 
-         <!-- Modal Content -->
-         <div class="modal-content">
-           <div class="modal-header">
-             <img class="modal-image" />
-             <h4 class="modal-title">Modal Header</h4>
-           </div>
-           <div class="modal-body">
-             <ul class="pokemon-info"></ul>
-           </div>
-           <div class="modal-footer">
-           </div>
-           </div>
-        </div>
+       <div class="bg-modal">
+	        <div class="modal-contents">
+		          <div class="close">+</div>
+      </div>
+    </div>
+      <div class="wrapper" id="pokemon_container"</div>
     </main>
   </body>
 </html>
