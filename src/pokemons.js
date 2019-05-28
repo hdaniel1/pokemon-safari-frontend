@@ -10,11 +10,10 @@ class Pokemon {
   }
 
   showInfo(event) {
-    let pokemonSpecies = this.species
-    let pokemonAbility = this.ability
-    let pokemonNature = this.nature
-    let pokemonTypes = []
-    pokemonTypes.push(this.type_1, this.type_2)
+    // event.target.classList.add("modal")
+    let pokemonModal = document.querySelector(".modal")
+    pokemonModal.style.display = "block";
+
   }
 
   assignNature() {
@@ -27,26 +26,29 @@ class Pokemon {
     //create the elements
     let pokemonDiv = document.createElement("div")
     let pokemonSprite = document.createElement("img")
+    let pokemonModal = document.createElement("div")
     //add element info
     pokemonSprite.src = this.sprite_image
     pokemonSprite.classList.add("pokemon-sprite")
-    pokemonSprite.classList.add("circle")
+    // pokemonSprite.classList.add("circle")
     pokemonSprite.dataset.pokemondId = this.id
     pokemonSprite.dataset.nature = this.nature
+    pokemonModal.innerText = "TEST"
+    pokemonModal.classList.add("modal")
     //append elements to the dom
     pokemonDiv.appendChild(pokemonSprite)
     pokemonContainer.appendChild(pokemonDiv)
+    pokemonDiv.appendChild(pokemonModal)
     //add event listener to the pokemon
     pokemonDiv.addEventListener("click", this.showInfo.bind(this))
   }
 
+
   static fetchPokemon(){
     fetch("http://localhost:3000/pokemons")
-    .then(Nature.fetchNatures())
     .then(response => response.json())
     .then(pokemons => pokemons.forEach(pokemon => {
         let pokemonInstance = new Pokemon(pokemon)
-        pokemonInstance.assignNature()
         pokemonInstance.render()
     }))
   }

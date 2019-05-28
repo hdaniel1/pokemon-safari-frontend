@@ -9,7 +9,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
-
+/*add pokemon shake*/
 .pokemon-sprite:hover {
    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
@@ -72,10 +72,17 @@ body {
   color: white;
 }
 
-/* .circle
-  {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    background-color:grey;
-  } */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 50%;
+  top: 50%;
+  width: 25%; /* Full width */
+  height: 25%%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: grey; /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  transform: translate(-50%, -50%);
+}

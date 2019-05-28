@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", init)
 
 function init(){
-  Pokemon.fetchPokemon()
+  Promise.all([Pokemon.fetchPokemon(), Nature.fetchNatures()])
+  Pokemon.all.forEach(pokemon => {
+    pokemon.assignNature()
+  })
 }
