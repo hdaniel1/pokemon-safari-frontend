@@ -10,14 +10,14 @@ class Pokemon {
   }
 
   showInfo(event) {
-    let modal = document.querySelector(".bg-modal")
+    let modal = document.querySelector(".bg-modal-pokemon-info")
     let pokemonModalHeader = document.querySelector(".bg-modal-title")
     let pokemonModalList = document.querySelector(".pokemon-info")
     let pokemonModalImage = document.querySelector(".bg-modal-image")
     let pokemonSpecies = document.createElement("h4")
 
     document.querySelector('.close').addEventListener("click", function() {
-       document.querySelector('.bg-modal').style.display = "none";
+       document.querySelector('.bg-modal-pokemon-info').style.display = "none";
     });
 
 
@@ -25,20 +25,23 @@ class Pokemon {
     let pokemonLiAbility = document.createElement('li')
     let pokemonLiType1 = document.createElement('li')
     let pokemonLiType2 = document.createElement('li')
+    let pokemonNature = document.createElement("li")
     let catchButton = document.createElement('button')
     //add modal element info
+    pokemonNature.innerText = `Nature: ${this.nature}`
     pokemonModalHeader.innerHTML = ""
     pokemonModalList.innerHTML = ""
     modal.style.display = "flex"
     pokemonSpecies.innerText = this.species.toUpperCase()
     pokemonLiAbility.innerHTML= `Ability: ${this.ability}`
-    pokemonLiType1.innerHTML = `Type 1: ${this.type_1}`
-    pokemonLiType2.innerHTML = `Type 2: ${this.type_2}`
+    pokemonLiType1.innerHTML = `Type 1: ${this.type_1}/${this.type_2}`
     catchButton.innerText = "Catch this Pokemon!"
     pokemonModalImage.src = this.sprite_image
     //append modal elements
     pokemonModalHeader.prepend(pokemonSpecies, pokemonModalImage)
-    pokemonModalList.append(pokemonLiAbility, pokemonLiType1, pokemonLiType2, catchButton)
+    pokemonModalList.append(pokemonLiAbility, pokemonLiType1, pokemonLiType2, pokemonNature, catchButton)
+    //add event listener for catching
+    catchButton.addEventListener("click", this.catchPokemon.bind(this))
   }
 
   assignNature() {
@@ -51,7 +54,28 @@ class Pokemon {
     // fetch()
     let trainer = Trainer.all[0]
     let pokemon = this
-    debugger
+    let data = {
+      trainer_id: trainer.id,
+      pokemon_id:pokemon.id,
+      nature:pokemon.nature
+    }
+    fetch("http://localhost:3000/trainer_pokemons", {
+      method: "POST",
+      headers: {
+        "content-type":"application/json",
+        "accepts": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(pokemon => new TrainerPokemon(pokemon.id,
+                                        pokemon.nickname,
+                                        pokemon.pokemon.species,
+                                        pokemon.nature,
+                                        pokemon.pokemon.type_1,
+                                        pokemon.pokemon.type_2,
+                                        pokemon.pokemon.ability,
+                                        pokemon.pokemon.sprite_image))
   }
 
   render(event) {

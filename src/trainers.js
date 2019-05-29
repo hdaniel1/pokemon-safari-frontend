@@ -7,61 +7,74 @@ class Trainer{
   }
 
   seeMyPokemon() {
-    let modal = document.querySelector(".bg-modal")
-    let pokemonModalHeader = document.querySelector(".bg-modal-title")
-    let pokemonModalList = document.querySelector(".pokemon-info")
-    let pokemonModalImage = document.querySelector(".bg-modal-image")
+    let pokemonModal = document.createElement("div")
+    pokemonModal.classList.add("bg-modal-pokemon-info")
+    let pokemonModalContent = document.createElement("div")
+    pokemonModalContent.classList.add("modal-content")
+    let pokemonClose = document.createElement("div")
+    let pokemonModalBody = document.createElement("div")
+    pokemonClose.classList.add("close")
+    pokemonClose.innerText = "+"
+    pokemonModal.style.display = "flex"
+    pokemonModalBody.classList.add("bg-modal-body")
 
-    pokemonModalHeader.innerHTML = ""
-    pokemonModalList.innerHTML = ""
-    modal.style.display = "flex";
-
-    document.querySelector('.close').addEventListener("click", function() {
-	     document.querySelector('.bg-modal').style.display = "";
+    pokemonModalContent.appendChild(pokemonClose)
+    pokemonClose.addEventListener("click", function() {
+       pokemonModal.style.display = "none";
     });
 
     TrainerPokemon.all.forEach(pokemon => {
-      //create elements
+      let pokemonModalHeader = document.createElement("div")
       let pokemonDiv = document.createElement("div")
-      let pokemonInfoDiv = document.createElement("div")
+      let pokemonClose = document.createElement("div")
       let pokemonImage = document.createElement("img")
-      let pokemonListInfo = document.createElement("ul")
-      let pokemonSpeciesInfo = document.createElement("li")
+      let pokemonModalTitle = document.createElement("h4")
+      let pokemonInfo = document.createElement("ul")
       let pokemonAbility = document.createElement("li")
-      let pokemonType1 = document.createElement("li")
-      let pokemonType2 = document.createElement("li")
-      let pokemonInvisibleDiv = document.createElement("div")
-      let pokemonButtonDiv = document.createElement("div")
+      let pokemonNature = document.createElement("li")
+      let pokemonType = document.createElement("li")
       let releaseButton = document.createElement("button")
-      //add element info
-      pokemonButtonDiv.classList.add("release-button-div")
-      releaseButton.classList.add("release-button")
-      releaseButton.dataset.pokemonId = pokemon.id
-      releaseButton.innerText = "Release Pokemon"
-      pokemonInfoDiv.classList.add("pokemon-info")
-      pokemonInvisibleDiv.classList.add("pokemon-invis")
-      pokemonSpeciesInfo.innerText = `Species: ${pokemon.species}`
-      pokemonAbility.innerText = `Ability: ${pokemon.ability}`
-      pokemonType1.innerText = `Type: ${pokemon.type_1}/${pokemon.type_2}`
-      pokemonImage.src = pokemon.image_url
-      pokemonImage.classList.add("my-pokemon")
-      pokemonListInfo.append(pokemonSpeciesInfo, pokemonAbility, pokemonType1, pokemonType2)
-      pokemonInfoDiv.appendChild(pokemonListInfo)
-      pokemonButtonDiv.appendChild(releaseButton)
-      pokemonDiv.appendChild(pokemonImage)
-      document.querySelector(".modal-contents").append(pokemonDiv, pokemonInfoDiv, pokemonInvisibleDiv, pokemonButtonDiv)
-      //add event listener for release
-      releaseButton.addEventListener("click", )
-    })
 
+      pokemonModalHeader.classList.add("bg-modal-header")
+      pokemonModalTitle.classList.add("bg-modal-title")
+      pokemonInfo.classList.add("pokemon-info")
+      pokemonDiv.classList.add("pokemon-info-div")
+
+      releaseButton.innerText = "Release"
+      releaseButton.dataset.id = pokemon.id
+      pokemonAbility.innerText = `Ability: ${pokemon.ability}`
+      pokemonType.innerText = `Type: ${pokemon.type_1}/${pokemon.type_2}`
+      pokemonNature.innerText = `Nature: ${pokemon.nature}`
+      pokemonModalTitle.innerText = pokemon.species
+      pokemonImage.src = pokemon.image
+
+      pokemonInfo.append(pokemonAbility, pokemonType, pokemonNature)
+      pokemonModalHeader.append(pokemonModalTitle, pokemonImage, pokemonInfo, releaseButton)
+      pokemonDiv.appendChild(pokemonModalHeader)
+      pokemonModalContent.appendChild(pokemonDiv)
+      pokemonModal.appendChild(pokemonModalContent)
+
+      //add release event listener
+      releaseButton.addEventListener("click", pokemon.releasePokemon)
+    })
+    document.body.appendChild(pokemonModal)
   }
 
   createMyPokemonObjects(event) {
     let trainerId = this.id
-    fetch(`http://localhost:3000/trainers/${trainerId}`)
+    fetch(`http://localhost:3000/trainer_pokemons`)
     .then(resp => resp.json())
-    .then(trainer => trainer.trainer_pokemons.forEach(pokemon => {
-      let trainerPokemonInstance = new TrainerPokemon(pokemon)
+    .then(pokemons => pokemons.forEach(pokemon => {
+      if (pokemon.trainer_id === 1) {
+        new TrainerPokemon (pokemon.id,
+                            pokemon.nickname,
+                            pokemon.pokemon.species,
+                            pokemon.nature,
+                            pokemon.pokemon.type_1,
+                            pokemon.pokemon.type_2,
+                            pokemon.pokemon.ability,
+                            pokemon.pokemon.sprite_image)
+      }
     }))
   }
 
