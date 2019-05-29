@@ -115,7 +115,7 @@ input {
 
 .close {
   visibility: hidden;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	right: 10px;
 	font-size: 42px;
@@ -125,6 +125,19 @@ input {
 	&:hover {
 		color: #666;
 	}
+}
+
+.pokemon-info-div{
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  padding: 1%;
+  text-align: center;
+  border: 1px solid red;
+  border-radius: 25%;
+  margin-bottom: 20px;
 }
 
 .my-pokemon {
@@ -164,6 +177,13 @@ border-width: 0px 0px 1px 0px;
 border-color: darkred;
 }
 
+.pokemon-nickname{
+float: left;
+}
+
+.pokemon-updatebtn{
+  float: right;
+}
 
 #container.ghost {
   background:url(https://frenchbird.files.wordpress.com/2009/10/phh-troph-version-02sm.jpg)no-repeat center center fixed;

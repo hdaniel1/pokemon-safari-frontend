@@ -22,7 +22,6 @@ class TrainerPokemon {
   }
 
     adjustContent(e){
-      // debugger
       if(e.target.value.length === 0){
         e.target.setAttribute("size", "12")
       }else{
@@ -30,6 +29,32 @@ class TrainerPokemon {
       }
     }
 
+    updatePokemonNickname(e){
+        let id = e.target.dataset.id
+        // [data-text-id='${id}']
+        let nickname = document.querySelector(`[data-text-id='${id}']`).value
+        let data = {
+          nickname : nickname
+        }
+        debugger
+        fetch(`http://localhost:3000/trainer_pokemons/${id}`,{
+          method: "PATCH",
+          headers:{
+            "content-type" : "application/json",
+            "accepts" : "application/json"
+          },
+          body:JSON.stringify(data)
+        })
+        .then(resp => resp.json())
+        .then(jsonData => {
+          if(jsonData){
+              alert("Updated Successfully!!!")
+          }else{
+            alert("Sorry, there was an error updating pokemon nickname.")
+          }
+        })
+
+    }
 
   static all = []
 }
