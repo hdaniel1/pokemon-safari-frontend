@@ -63,6 +63,7 @@ class Pokemon {
       pokemon_id:pokemon.id,
       nature:pokemon.nature
     }
+
     fetch("http://localhost:3000/trainer_pokemons", {
       method: "POST",
       headers: {
@@ -98,6 +99,14 @@ class Pokemon {
     pokemonDiv.addEventListener("click", this.showInfo.bind(this))
   }
 
+  static fetchType(type) {
+    fetch(`http://localhost:3000/pokemons?type=${type}`)
+    .then(response => response.json())
+    .then(pokemons => pokemons.forEach(pokemon => {
+        let pokemonInstance = new Pokemon(pokemon)
+        pokemonInstance.render()
+    }))
+  }
 
   static fetchPokemon(){
     fetch("http://localhost:3000/pokemons")
