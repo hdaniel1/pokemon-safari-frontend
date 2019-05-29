@@ -14,13 +14,14 @@ class Trainer{
     let pokemonClose = document.createElement("div")
     let pokemonModalBody = document.createElement("div")
     pokemonClose.classList.add("close")
+    pokemonClose.style.visibility = "visible"
     pokemonClose.innerText = "+"
     pokemonModal.style.display = "flex"
     pokemonModalBody.classList.add("bg-modal-body")
 
     pokemonModalContent.appendChild(pokemonClose)
     pokemonClose.addEventListener("click", function() {
-       pokemonModal.style.display = "none";
+    pokemonModal.style.display = "none";
     });
 
     TrainerPokemon.all.forEach(pokemon => {
@@ -34,12 +35,23 @@ class Trainer{
       let pokemonNature = document.createElement("li")
       let pokemonType = document.createElement("li")
       let releaseButton = document.createElement("button")
+      let pokemonNickname = document.createElement("INPUT")
+      pokemonNickname.setAttribute("type", "text");
+      pokemonNickname.setAttribute("placeholder", "Edit Nickname:");
+      pokemonNickname.setAttribute("size", "12");
 
+      ['keypress','keyup', 'input'].forEach( someEvent =>
+        pokemonNickname.addEventListener(someEvent, pokemon.adjustContent))
+      //
+      // pokemonNickname.addEventListener('keypress', pokemon.adjustContent)
+      // pokemonNickname.addEventListener('keyup', pokemon.setTextFieldContent)
       pokemonModalHeader.classList.add("bg-modal-header")
       pokemonModalTitle.classList.add("bg-modal-title")
       pokemonInfo.classList.add("pokemon-info")
       pokemonDiv.classList.add("pokemon-info-div")
+      pokemonNickname.classList.add("pokemon-textfield")
 
+      pokemonNickname.value = pokemon.nickname
       releaseButton.innerText = "Release"
       releaseButton.dataset.id = pokemon.id
       pokemonAbility.innerText = `Ability: ${pokemon.ability}`
@@ -48,7 +60,7 @@ class Trainer{
       pokemonModalTitle.innerText = pokemon.species
       pokemonImage.src = pokemon.image
 
-      pokemonInfo.append(pokemonAbility, pokemonType, pokemonNature)
+      pokemonInfo.append(pokemonNickname, pokemonAbility, pokemonType, pokemonNature)
       pokemonModalHeader.append(pokemonModalTitle, pokemonImage, pokemonInfo, releaseButton)
       pokemonDiv.appendChild(pokemonModalHeader)
       pokemonModalContent.appendChild(pokemonDiv)
@@ -59,6 +71,8 @@ class Trainer{
     })
     document.body.appendChild(pokemonModal)
   }
+
+
 
   createMyPokemonObjects(event) {
     let trainerId = this.id
@@ -85,6 +99,7 @@ class Trainer{
       let trainerInstance = new Trainer(trainer)
       trainerInstance.createMyPokemonObjects()
       document.querySelector("#my-pokemon").addEventListener("click", function() {
+
         trainerInstance.seeMyPokemon()
       })
     })

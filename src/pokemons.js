@@ -15,6 +15,7 @@ class Pokemon {
     let pokemonModalList = document.querySelector(".pokemon-info")
     let pokemonModalImage = document.querySelector(".bg-modal-image")
     let pokemonSpecies = document.createElement("h4")
+    document.querySelector('.close').style.visibility = "visible"
 
     document.querySelector('.close').addEventListener("click", function() {
        document.querySelector('.bg-modal-pokemon-info').style.display = "none";
@@ -27,6 +28,7 @@ class Pokemon {
     let pokemonLiType2 = document.createElement('li')
     let pokemonNature = document.createElement("li")
     let catchButton = document.createElement('button')
+
     //add modal element info
     pokemonNature.innerText = `Nature: ${this.nature}`
     pokemonModalHeader.innerHTML = ""
@@ -37,9 +39,11 @@ class Pokemon {
     pokemonLiType1.innerHTML = `Type 1: ${this.type_1}/${this.type_2}`
     catchButton.innerText = "Catch this Pokemon!"
     pokemonModalImage.src = this.sprite_image
+
     //append modal elements
     pokemonModalHeader.prepend(pokemonSpecies, pokemonModalImage)
     pokemonModalList.append(pokemonLiAbility, pokemonLiType1, pokemonLiType2, pokemonNature, catchButton)
+
     //add event listener for catching
     catchButton.addEventListener("click", this.catchPokemon.bind(this))
   }

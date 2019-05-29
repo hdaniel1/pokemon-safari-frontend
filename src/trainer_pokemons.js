@@ -19,8 +19,17 @@ class TrainerPokemon {
     .then(response => response.json())
     .then(json => event.target.parentNode.parentNode.remove())
 
-
   }
+
+    adjustContent(e){
+      // debugger
+      if(e.target.value.length === 0){
+        e.target.setAttribute("size", "12")
+      }else{
+        e.target.style.width = ((e.target.value.length + 1) * 8) + 'px';
+      }
+    }
+
 
   static all = []
 }

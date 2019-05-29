@@ -1,4 +1,4 @@
 function adjustDivs(divs) {
-  debugger
+  // debugger
   return Promise.all(Pokemon.fetchPokemon())
 }
