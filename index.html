@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <title>Pokemon Safari</title>
+    <link id="page_favicon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAD3AAgEAAD39/cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIiIgAAAAAjMzMzIAAAAjMzMzMyAAACMzMjMzIAAAIiIjIiIgAAAhERIRESAAACERERERIAAAIREREREgAAACEREREgAAAAAiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AADwHwAA4A8AAMAHAADABwAAwAcAAMAHAADABwAAwAcAAOAPAADwHwAA//8AAP//AAD//wAA" rel="icon" type="image/x-icon" />
     <meta charset="utf-8">
     <script type="text/javascript" src="src/trainer_pokemons.js"></script>
     <script type="text/javascript" src="src/trainers.js"></script>
@@ -15,14 +17,36 @@
       <source src="assets/route_120.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio> -->
-    <!-- <header>
-      <img src="https://fontmeme.com/permalink/190525/143e3f6ef63b0ac60ba6aaf8a0b3dad8.png">
-    </header> -->
-    <div class="topnav">
-  <a class="change-type">Change Type</a>
+<div class="navbar">
+  <a href="#about">About</a>
   <a href="#my-pokemon" class="iframe" id="my-pokemon">My Pokemon</a>
   <a href="#shuffle" id="shuffle">Shuffle</a>
-  <a href="#about">About</a>
+  <div class="dropdown">
+    <button class="dropbtn">Choose a Type
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#type" class = "pokemon-type">Random</a>
+      <a href="#type" class = "pokemon-type">Fire</a>
+      <a href="#type" class = "pokemon-type">Water</a>
+      <a href="#type" class = "pokemon-type">Grass</a>
+      <a href="#type" class = "pokemon-type">Steel</a>
+      <a href="#type" class = "pokemon-type">Ghost</a>
+      <a href="#type" class = "pokemon-type">Bug</a>
+      <a href="#type" class = "pokemon-type">Fighting</a>
+      <a href="#type" class = "pokemon-type">Electric</a>
+      <a href="#type" class = "pokemon-type">Dragon</a>
+      <a href="#type" class = "pokemon-type">Fairy</a>
+      <a href="#type" class = "pokemon-type">Ice</a>
+      <a href="#type" class = "pokemon-type">Rock</a>
+      <a href="#type" class = "pokemon-type">Ground</a>
+      <a href="#type" class = "pokemon-type">Dark</a>
+      <a href="#type" class = "pokemon-type">Normal</a>
+      <a href="#type" class = "pokemon-type">Psychic</a>
+      <a href="#type" class = "pokemon-type">Flying</a>
+      <a href="#type" class = "pokemon-type">Poison</a>
+    </div>
+  </div>
 </div>
     <main>
       <div id="title">
