@@ -10,6 +10,7 @@ class Pokemon {
   }
 
   showInfo(event) {
+    document.querySelector("#audio").src = "assets/pokemon_battle.mp3"
     let modal = document.querySelector(".bg-modal-pokemon-info")
     let pokemonModalHeader = document.querySelector(".bg-modal-title")
     let pokemonModalList = document.querySelector(".pokemon-info")
@@ -18,6 +19,7 @@ class Pokemon {
     document.querySelector('.close').style.visibility = "visible"
 
     document.querySelector('.close').addEventListener("click", function() {
+       document.querySelector("#audio").src = document.querySelector("body").dataset.music
        document.querySelector('.bg-modal-pokemon-info').style.display = "none";
     });
 
@@ -56,6 +58,7 @@ class Pokemon {
   catchPokemon(e){
     // console.log(e.target)
     // fetch()
+    document.querySelector("#audio").src = "assets/caught_theme.mp3"
     let trainer = Trainer.all[0]
     let pokemon = this
     let data = {

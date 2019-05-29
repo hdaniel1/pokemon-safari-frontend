@@ -224,6 +224,7 @@ float: left;
 
 .pokemon-updatebtn{
   float: right;
+}
 
 body.Random {
   background: url(https://images7.alphacoders.com/662/662102.png) no-repeat center center fixed;
@@ -238,6 +239,7 @@ body.Ghost {
 
 body.Water {
   background:url(https://wallpaperplay.com/walls/full/b/b/6/101774.jpg)no-repeat center center fixed;
+  background-size: cover;
 }
 
 body.Fire {
@@ -276,8 +278,8 @@ body.Rock {
   background-size: cover;
 }
 
-body.grass {
-  background:url(https://media.istockphoto.com/illustrations/fantasy-forest-background-illustration-painting-illustration-id546452064?k=6&m=546452064&s=612x612&w=0&h=YLwmm7jatK3vFdkHWHLTnCL6URAfvb4rIpT_jeQyWTU=)no-repeat center center fixed;
+body.Grass {
+  background:url(https://steamuserimages-a.akamaihd.net/ugc/100603690261147207/24EEC49836089DAA332B19BCBD972CA4DFE4F7F7/)no-repeat center center fixed;
   background-size: cover;
 }
 

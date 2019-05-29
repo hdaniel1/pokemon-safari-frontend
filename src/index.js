@@ -7,15 +7,24 @@ function init(){
   Promise.all([Pokemon.fetchPokemon(), Nature.fetchNatures(), Trainer.fetchTrainers()])
   //shuffle current pokemon based on type
   document.querySelector("#shuffle").addEventListener("click", function() {
-    let type = document.querySelector("body").className
-    document.querySelector(".dropbtn").innerText = type
+
+    if (document.body.className) {
+    document.querySelector(".dropbtn").innerText = document.body.className
     Pokemon.all = []
     document.querySelector("#pokemon_container").innerHTML = ""
-    Pokemon.fetchType(type)
+    Pokemon.fetchType(document.querySelector("body").className)
+    }
+    else {
+      Pokemon.all = []
+      document.querySelector("#pokemon_container").innerHTML = ""
+      Pokemon.fetchPokemon()
+    }
   })
   //change pokemon by type
   document.querySelectorAll(".pokemon-type").forEach(type => {
     type.addEventListener("click", function(){
+      document.querySelector("#audio").src = event.target.dataset.music
+      document.querySelector("body").dataset.music = event.target.dataset.music
       document.body.classList = ""
       document.body.classList.add(event.target.innerText)
       document.querySelector(".dropbtn").innerText = event.target.innerText

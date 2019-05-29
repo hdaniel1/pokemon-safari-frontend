@@ -48,6 +48,7 @@ class TrainerPokemon {
         .then(resp => resp.json())
         .then(jsonData => {
           if(jsonData){
+            document.querySelector(".pokemon-textfield").innerText = nickname
               alert("Updated Successfully!!!")
           }else{
             alert("Sorry, there was an error updating pokemon nickname.")

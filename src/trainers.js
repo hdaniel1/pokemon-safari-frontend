@@ -7,6 +7,7 @@ class Trainer{
   }
 
   seeMyPokemon() {
+    document.querySelector("#audio").src = "assets/pokedex_theme.mp3"
     let pokemonModal = document.createElement("div")
     pokemonModal.classList.add("bg-modal-pokemon-info")
     let pokemonModalContent = document.createElement("div")
@@ -21,6 +22,7 @@ class Trainer{
 
     pokemonModalContent.appendChild(pokemonClose)
     pokemonClose.addEventListener("click", function() {
+    document.querySelector("#audio").src = document.querySelector("body").dataset.music
     pokemonModal.style.display = "none";
     });
 
