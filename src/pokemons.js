@@ -10,31 +10,34 @@ class Pokemon {
   }
 
   showInfo(event) {
+    let modal = document.querySelector(".bg-modal")
+    let pokemonModalHeader = document.querySelector(".bg-modal-title")
+    let pokemonModalList = document.querySelector(".pokemon-info")
+    let pokemonModalImage = document.querySelector(".bg-modal-image")
+    let pokemonSpecies = document.createElement("h4")
+
     document.querySelector('.close').addEventListener("click", function() {
-       document.querySelector('.modal').style.display = "none";
+       document.querySelector('.bg-modal').style.display = "none";
     });
 
-    let modal = document.querySelector(".modal")
-    let pokemonModalHeader = document.querySelector(".modal-title")
-    let pokemonModalList = document.querySelector(".pokemon-info")
-    let pokemonModalImage = document.querySelector(".modal-image")
-    pokemonModalHeader.innerHTML = ""
-    pokemonModalList.innerHTML = ""
+
     //create modal elements
     let pokemonLiAbility = document.createElement('li')
     let pokemonLiType1 = document.createElement('li')
     let pokemonLiType2 = document.createElement('li')
     let catchButton = document.createElement('button')
     //add modal element info
-    pokemonModalHeader.innerText = this.species
-    pokemonLiAbility.innerHTML= `ABILITY: ${this.ability}`
-    pokemonLiType1.innerHTML = `TYPE 1: ${this.type_1}`
-    pokemonLiType2.innerHTML = `TYPE 2: ${this.type_2}`
-    catchButton.innerText = "Catch this Pokemon"
-    modal.style.display = "block"
+    pokemonModalHeader.innerHTML = ""
+    pokemonModalList.innerHTML = ""
+    modal.style.display = "flex"
+    pokemonSpecies.innerText = this.species.toUpperCase()
+    pokemonLiAbility.innerHTML= `Ability: ${this.ability}`
+    pokemonLiType1.innerHTML = `Type 1: ${this.type_1}`
+    pokemonLiType2.innerHTML = `Type 2: ${this.type_2}`
+    catchButton.innerText = "Catch this Pokemon!"
     pokemonModalImage.src = this.sprite_image
     //append modal elements
-    pokemonModalHeader.prepend(pokemonModalImage)
+    pokemonModalHeader.prepend(pokemonSpecies, pokemonModalImage)
     pokemonModalList.append(pokemonLiAbility, pokemonLiType1, pokemonLiType2, catchButton)
   }
 

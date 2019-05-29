@@ -45,7 +45,8 @@ body {
 }
 
 .pokemon-sprite {
-
+  border-radius:100%;
+  background-color: rgba(255, 255, 255, 0.5)
 }
 
 .topnav {
@@ -75,31 +76,6 @@ body {
   color: white;
 }
 
-.modal {
-  display: none; /* Hidden by default */
-   position: fixed; /* Stay in place */
-   z-index: 1; /* Sit on top */
-   padding-top: 100px; /* Location of the box */
-   left: 50%;
-   top: 50%;
-   width: 25%; /* Full width */
-   height: 25%%; /* Full height */
-   overflow: auto; /* Enable scroll if needed */
-   background-color: grey; /* Fallback color */
-   background-color: rgba(255, 255, 255, 0.5); /* Black w/ opacity */
-   transform: translate(-50%, -50%);
-   color: green;
-}
-.modal-image {
-  left:50%;
-  top:50%;
-}
-.modal-title {
-  left:50%;
-  top:50%;
-}
-
-
 .bg-modal {
 	background-color: rgba(0, 0, 0, 0.4);
 	width: 100%;
@@ -111,7 +87,14 @@ body {
 	align-items: center;
 }
 
-.modal-contents {
+.bg-modal-title {
+  text-align:center;
+}
+
+.modal-content {
+  background:url(https://www.anaitgames.com/images/uploads/2013/09/analisis-pokemon-x-4.jpg);
+  background-size:auto;
+  background-position: center;
 	height: 300px;
 	width: 500px;
 	background-color: white;
@@ -149,11 +132,12 @@ input {
 }
 
 .pokemon-info {
-  float:left;
+  float:center;
+  list-style-type: none;
 }
 
 .pokemon-info ul li {
-  text-align:left;
+  text-align:center;
   list-style-type: none;
 
 }

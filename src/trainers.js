@@ -7,7 +7,15 @@ class Trainer{
   }
 
   seeMyPokemon() {
-    document.querySelector('.bg-modal').style.display = "flex";
+    let modal = document.querySelector(".bg-modal")
+    let pokemonModalHeader = document.querySelector(".bg-modal-title")
+    let pokemonModalList = document.querySelector(".pokemon-info")
+    let pokemonModalImage = document.querySelector(".bg-modal-image")
+
+    pokemonModalHeader.innerHTML = ""
+    pokemonModalList.innerHTML = ""
+    modal.style.display = "flex";
+
     document.querySelector('.close').addEventListener("click", function() {
 	     document.querySelector('.bg-modal').style.display = "";
     });
