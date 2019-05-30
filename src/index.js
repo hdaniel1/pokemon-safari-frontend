@@ -1,26 +1,27 @@
 document.addEventListener("DOMContentLoaded", init)
 
 function init(){
-  setTimeout(function(){
-    Pokemon.all.forEach(pokemon => pokemon.assignNature()); }, 3000);
-  // let promise1 = Promise.resolve(Pokemon.all)
+  //ensure pokemon, trainer, and nature objects are created, then assign natures to pokemon
   Promise.all([Pokemon.fetchPokemon(), Nature.fetchNatures(), Trainer.fetchTrainers()])
-  //shuffle current pokemon based on type
-  document.querySelector("#shuffle").addEventListener("click", function() {
+  .then(responses => responses[0].forEach(pokemon => pokemon.assignNature()))
 
+  //shuffle current pokemon based on page type
+  document.querySelector("#shuffle").addEventListener("click", function() {
     if (document.body.className) {
     document.querySelector(".dropbtn").innerText = document.body.className
     Pokemon.all = []
     document.querySelector("#pokemon_container").innerHTML = ""
     Pokemon.fetchType(document.querySelector("body").className)
+    .then(pokemons => pokemons.forEach(pokemon => pokemon.assignNature()))
     }
     else {
       Pokemon.all = []
       document.querySelector("#pokemon_container").innerHTML = ""
       Pokemon.fetchPokemon()
+      .then(pokemons => pokemons.forEach(pokemon => pokemon.assignNature()))
     }
   })
-  //change pokemon by type
+  //change shown pokemon by type
   document.querySelectorAll(".pokemon-type").forEach(type => {
     type.addEventListener("click", function(){
       document.querySelector("#audio").src = event.target.dataset.music
@@ -31,6 +32,7 @@ function init(){
       Pokemon.all = []
       document.querySelector("#pokemon_container").innerHTML = ""
       Pokemon.fetchType(event.target.innerText)
+      .then(pokemons => pokemons.forEach(pokemon => pokemon.assignNature()))
     })
   })
 }

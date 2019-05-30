@@ -1,4 +1,5 @@
 class Pokemon {
+  //pokemon object instance constructor
   constructor(pokemon) {
     this.id = pokemon.id
     this.species = pokemon.species
@@ -8,22 +9,22 @@ class Pokemon {
     this.sprite_image = pokemon.sprite_image
     Pokemon.all.push(this)
   }
-
+  //show wild pokemon info in modal box
   showInfo(event) {
+    //set wild pokemon music
     document.querySelector("#audio").src = "assets/pokemon_battle.mp3"
+    //fetch modal elements from base HTML and set visible
     let modal = document.querySelector(".bg-modal-pokemon-info")
     let pokemonModalHeader = document.querySelector(".bg-modal-title")
     let pokemonModalList = document.querySelector(".pokemon-info")
     let pokemonModalImage = document.querySelector(".bg-modal-image")
     let pokemonSpecies = document.createElement("h4")
     document.querySelector('.close').style.visibility = "visible"
-
+    //set close button event
     document.querySelector('.close').addEventListener("click", function() {
        document.querySelector("#audio").src = document.querySelector("body").dataset.music
        document.querySelector('.bg-modal-pokemon-info').style.display = "none";
     });
-
-
     //create modal elements
     let pokemonLiAbility = document.createElement('li')
     let pokemonLiType1 = document.createElement('li')
@@ -36,9 +37,9 @@ class Pokemon {
     pokemonModalHeader.innerHTML = ""
     pokemonModalList.innerHTML = ""
     modal.style.display = "flex"
-    pokemonSpecies.innerText = this.species.toUpperCase()
+    pokemonSpecies.innerText = `A WILD ${this.species.toUpperCase()} APPEARED!`
     pokemonLiAbility.innerHTML= `Ability: ${this.ability}`
-    pokemonLiType1.innerHTML = `Type 1: ${this.type_1}/${this.type_2}`
+    pokemonLiType1.innerHTML = this.type_2 ? `Type 1: ${this.type_1}/${this.type_2}` : `Type 1: ${this.type_1}`
     catchButton.innerText = "Catch this Pokemon!"
     pokemonModalImage.src = this.sprite_image
 
@@ -49,16 +50,16 @@ class Pokemon {
     //add event listener for catching
     catchButton.addEventListener("click", this.catchPokemon.bind(this))
   }
-
+  //assign a random nature to a pokemon object instance
   assignNature() {
     var nature = Nature.all[Math.floor(Math.random() * Nature.all.length)];
     this.nature = nature.name
   }
-
+  //add a trainerpokemon instance for a pokemon to the logged in trainer
   catchPokemon(e){
-    // console.log(e.target)
-    // fetch()
+    //set music to caught theme
     document.querySelector("#audio").src = "assets/caught_theme.mp3"
+    //get the trainer and pokemon info
     let trainer = Trainer.all[0]
     let pokemon = this
     let data = {
@@ -66,7 +67,7 @@ class Pokemon {
       pokemon_id:pokemon.id,
       nature:pokemon.nature
     }
-
+    //make fetch post request to DB
     fetch("http://localhost:3000/trainer_pokemons", {
       method: "POST",
       headers: {
@@ -85,7 +86,7 @@ class Pokemon {
                                         pokemon.pokemon.ability,
                                         pokemon.pokemon.sprite_image))
   }
-
+  //render pokemon object to DOM
   render(event) {
     let pokemonContainer = document.querySelector("#pokemon_container")
     //create the elements
@@ -101,24 +102,29 @@ class Pokemon {
     //add event listener to the pokemon
     pokemonDiv.addEventListener("click", this.showInfo.bind(this))
   }
-
+  //fetch pokemon objects by type and render to DOM
   static fetchType(type) {
-    fetch(`http://localhost:3000/pokemons?type=${type}`)
+    return fetch(`http://localhost:3000/pokemons?type=${type}`)
     .then(response => response.json())
-    .then(pokemons => pokemons.forEach(pokemon => {
+    .then(pokemons => {
+        pokemons.forEach(pokemon => {
         let pokemonInstance = new Pokemon(pokemon)
         pokemonInstance.render()
-    }))
+    })
+        return Pokemon.all})
   }
-
+  //fetch random pokemon regardless of type and render to DOM
   static fetchPokemon(){
-    fetch("http://localhost:3000/pokemons")
+    return fetch("http://localhost:3000/pokemons")
     .then(response => response.json())
-    .then(pokemons => pokemons.forEach(pokemon => {
+    .then(pokemons => {
+        pokemons.forEach(pokemon => {
         let pokemonInstance = new Pokemon(pokemon)
         pokemonInstance.render()
-    }))
-  }
+    })
+        return Pokemon.all})
+}
 
+  //all current pokemon objects
   static all = []
 }
