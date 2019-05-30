@@ -17,8 +17,13 @@ class TrainerPokemon {
       method: "DELETE"
     })
     .then(response => response.json())
-    .then(json => event.target.parentNode.parentNode.remove())
-
+    .then(json => {
+      for( var i = 0; i < TrainerPokemon.all.length; i++){
+        if ( TrainerPokemon.all[i] === TrainerPokemon.all.find(pokemon => pokemon.id == json.id)) {
+          TrainerPokemon.all.splice(i, 1);
+        }
+      }
+      event.target.parentNode.parentNode.remove()})
   }
 
     adjustContent(e){
@@ -31,20 +36,23 @@ class TrainerPokemon {
 
     createNicknameForm(e){
       //create the form in the DOM
-      let pokemonNicknameForm = document.createElement("form")
-      let pokemonNicknameDiv = document.createElement("div")
-      let pokemonNicknameInput = document.createElement("input")
-      let pokemonUpdateButton = document.createElement("input")
+      if (!document.querySelector(`#nickname-form-${this.id}`)) {
+          let pokemonNicknameForm = document.createElement("form")
+          let pokemonNicknameDiv = document.createElement("div")
+          let pokemonNicknameInput = document.createElement("input")
+          let pokemonUpdateButton = document.createElement("input")
 
-      pokemonNicknameInput.type = "text"
-      pokemonNicknameInput.placeholder = "Change Nickname"
-      pokemonUpdateButton.type = "submit"
+          pokemonNicknameInput.type = "text"
+          pokemonNicknameInput.placeholder = "Change Nickname"
+          pokemonUpdateButton.type = "submit"
+          pokemonNicknameForm.id = `nickname-form-${this.id}`
 
-      pokemonNicknameForm.append(pokemonNicknameInput, pokemonUpdateButton)
-      pokemonNicknameDiv.appendChild(pokemonNicknameForm)
-      event.target.parentNode.prepend(pokemonNicknameDiv)
+          pokemonNicknameForm.append(pokemonNicknameInput, pokemonUpdateButton)
+          pokemonNicknameDiv.appendChild(pokemonNicknameForm)
+          event.target.parentNode.prepend(pokemonNicknameDiv)
 
-      pokemonNicknameForm.addEventListener("submit", this.updatePokemonNickname.bind(this))
+          pokemonNicknameForm.addEventListener("submit", this.updatePokemonNickname.bind(this))
+        }
     }
 
     updatePokemonNickname(event) {
