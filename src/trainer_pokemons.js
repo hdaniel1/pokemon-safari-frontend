@@ -29,15 +29,31 @@ class TrainerPokemon {
       }
     }
 
-    updatePokemonNickname(e){
-        let id = e.target.dataset.id
+    createNicknameForm(e){
+      //create the form in the DOM
+      let pokemonNicknameForm = document.createElement("form")
+      let pokemonNicknameDiv = document.createElement("div")
+      let pokemonNicknameInput = document.createElement("input")
+      let pokemonUpdateButton = document.createElement("input")
+
+      pokemonNicknameInput.type = "text"
+      pokemonNicknameInput.placeholder = "Change Nickname"
+      pokemonUpdateButton.type = "submit"
+
+      pokemonNicknameForm.append(pokemonNicknameInput, pokemonUpdateButton)
+      pokemonNicknameDiv.appendChild(pokemonNicknameForm)
+      event.target.parentNode.prepend(pokemonNicknameDiv)
+
+      pokemonNicknameForm.addEventListener("submit", this.updatePokemonNickname.bind(this))
+    }
+
+    updatePokemonNickname(event) {
         // [data-text-id='${id}']
-        let nickname = document.querySelector(`[data-text-id='${id}']`).value
+        let nickname = event.target.querySelector("input").value
         let data = {
           nickname : nickname
         }
-        debugger
-        fetch(`http://localhost:3000/trainer_pokemons/${id}`,{
+        fetch(`http://localhost:3000/trainer_pokemons/${this.id}`,{
           method: "PATCH",
           headers:{
             "content-type" : "application/json",
@@ -48,9 +64,13 @@ class TrainerPokemon {
         .then(resp => resp.json())
         .then(jsonData => {
           if(jsonData){
-            document.querySelector(".pokemon-textfield").innerText = nickname
+            document.querySelector("#audio").src = "assets/pokedex_theme.mp3"
+            let pokemonObject = TrainerPokemon.all.find(pokemon => pokemon.id == jsonData.id)
+            pokemonObject.nickname = nickname
+            document.querySelector("#pokemon-nickname").innerText = `Nickname: ${nickname}`
               alert("Updated Successfully!!!")
-          }else{
+          }
+          else{
             alert("Sorry, there was an error updating pokemon nickname.")
           }
         })

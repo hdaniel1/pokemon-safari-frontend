@@ -36,42 +36,15 @@ class Trainer{
       let pokemonAbility = document.createElement("li")
       let pokemonNature = document.createElement("li")
       let pokemonType = document.createElement("li")
+      let pokemonNickname = document.createElement("li")
       let releaseButton = document.createElement("button")
+      //create nickname stuff
+      let pokemonNicknameFormButton = document.createElement("button")
 
-      let pokemonNicknameDiv = document.createElement("div")
-      let pokemonNickname = document.createElement("INPUT")
-      let pokemonUpdateButton = document.createElement("button")
-
-      pokemonNickname.setAttribute("type", "text");
-      pokemonNickname.setAttribute("placeholder", "Edit Nickname:");
-      pokemonNickname.setAttribute("size", "12");
-
-
-      ['keypress','keyup'].forEach(someEvent => {
-        switch(someEvent){
-            case "keypress":
-            pokemonNickname.addEventListener(someEvent, pokemon.adjustContent)
-            break;
-            case "keyup":
-              pokemonNickname.addEventListener(someEvent, pokemon.adjustContent)
-              break;
-              default:
-                console.log("Sorry, no event")
-                break;
-        }
-      })
-
-
-      pokemonNicknameDiv.classList.add("pokemon-clear-div")
       pokemonModalHeader.classList.add("bg-modal-header")
       pokemonModalTitle.classList.add("bg-modal-title")
       pokemonInfo.classList.add("pokemon-info")
       pokemonDiv.classList.add("pokemon-info-div")
-      pokemonNickname.classList.add("pokemon-textfield")
-
-      pokemonNickname.value = pokemon.nickname
-      pokemonUpdateButton.innerText = "Update Pokemon Nickname"
-      pokemonUpdateButton.dataset.id=pokemon.id
 
       releaseButton.innerText = "Release"
       releaseButton.dataset.id = pokemon.id
@@ -79,21 +52,21 @@ class Trainer{
       pokemonAbility.innerText = `Ability: ${pokemon.ability}`
       pokemonType.innerText = `Type: ${pokemon.type_1}/${pokemon.type_2}`
       pokemonNature.innerText = `Nature: ${pokemon.nature}`
+      pokemonNickname.innerText = `Nickname: ${pokemon.nickname}`
+      pokemonNickname.id = "pokemon-nickname"
       pokemonModalTitle.innerText = pokemon.species
       pokemonImage.src = pokemon.image
+      pokemonNicknameFormButton.innerText = "Update Nickname"
 
-
-      pokemonNicknameDiv.append(pokemonNickname, pokemonUpdateButton)
-
-      pokemonInfo.append(pokemonAbility, pokemonType, pokemonNature)
-      pokemonModalHeader.append(pokemonModalTitle, pokemonImage, pokemonNicknameDiv, pokemonInfo, releaseButton)
+      pokemonInfo.append(pokemonNicknameFormButton, pokemonNickname,pokemonAbility, pokemonType, pokemonNature)
+      pokemonModalHeader.append(pokemonModalTitle, pokemonImage, pokemonInfo, releaseButton)
       pokemonDiv.appendChild(pokemonModalHeader)
       pokemonModalContent.appendChild(pokemonDiv)
       pokemonModal.appendChild(pokemonModalContent)
 
       //add release event listener
       releaseButton.addEventListener("click", pokemon.releasePokemon)
-      pokemonUpdateButton.addEventListener('click', pokemon.updatePokemonNickname)
+      pokemonNicknameFormButton.addEventListener('click', pokemon.createNicknameForm.bind(pokemon))
     })
     document.body.appendChild(pokemonModal)
   }
