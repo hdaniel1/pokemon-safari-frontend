@@ -49,14 +49,14 @@ body {
   background-color: rgba(255, 255, 255, 0.7)
 }
 /* Navbar container */
-.navbar {
+#app-navbar {
   overflow: hidden;
   background-color: #333;
   font-family: Arial;
 }
 
 /* Links inside the navbar */
-.navbar a {
+#app-navbar a {
   float: left;
   font-size: 16px;
   color: white;
@@ -65,14 +65,8 @@ body {
   text-decoration: none;
 }
 
-/* The dropdown container */
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
 /* Dropdown button */
-.dropdown .dropbtn {
+#types-dropdown #drop-button {
   font-size: 16px;
   border: none;
   outline: none;
@@ -83,13 +77,14 @@ body {
   margin: 0; /* Important for vertical align on mobile phones */
 }
 
-/* Add a red background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #ddd;
+/* The dropdown container */
+#types-dropdown {
+  float: left;
+  overflow: hidden;
 }
 
 /* Dropdown content (hidden by default) */
-.dropdown-content {
+#type-dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -98,8 +93,9 @@ body {
   z-index: 1;
 }
 
+
 /* Links inside the dropdown */
-.dropdown-content a {
+#type-dropdown-content a {
   float: none;
   color: black;
   padding: 12px 16px;
@@ -107,15 +103,19 @@ body {
   display: block;
   text-align: left;
 }
+/* Add a grey background color to navbar links on hover */
+#app-navbar a:hover, #types-dropdown:hover #drop-button {
+  background-color: #ddd;
+}
 
 /* Add a grey background color to dropdown links on hover */
-.dropdown-content a:hover {
+#type-dropdown-content a:hover {
   background-color: #ddd;
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
+#types-dropdown:hover #type-dropdown-content {
+  display: block !important;
 }
 
 .bg-modal-pokemon-info {
@@ -335,7 +335,7 @@ body.Normal {
 }
 
 
-.modal-content-about {
+ .modal-content-about {
   background:url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/159d6d33-5d73-4b2d-94cb-3fca673ed674/d6dhp0n-70379ec8-b473-4ff2-b532-bec1ebab0859.jpg/v1/fill/w_800,h_500,q_75,strp/simple_young_pokemon_background__1680x1050__by_kiss_d6dhp0n-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTAwIiwicGF0aCI6IlwvZlwvMTU5ZDZkMzMtNWQ3My00YjJkLTk0Y2ItM2ZjYTY3M2VkNjc0XC9kNmRocDBuLTcwMzc5ZWM4LWI0NzMtNGZmMi1iNTMyLWJlYzFlYmFiMDg1OS5qcGciLCJ3aWR0aCI6Ijw9ODAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.SxQtAR-ZeC8phSgXXXIFpeWOLxlxEjCtsxXalRFEfhI)no-repeat center center fixed;
   background-size:auto;
   background-position: center;

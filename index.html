@@ -10,7 +10,6 @@
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
@@ -31,7 +30,6 @@
     <!--===============================================================================================-->
 
 
-    <link rel="stylesheet" href="src/index.css">
   </head>
   <body data-music="assets/default_theme.mp3">
     <iframe src="assets/default_theme.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
@@ -39,20 +37,15 @@
       <source src="assets/route_120.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio> -->
-<<<<<<< HEAD
-<div class="navbar" style="display:none;">
-  <a href="#about">About</a>
-=======
-<div class="navbar">
+<div class="navbar" id="app-navbar" style="display:none;">
   <a href="#about" id="about">About</a>
->>>>>>> 5153270ebbcaa2bfef6b5b358715b02d708edca0
   <a href="#my-pokemon" class="iframe" id="my-pokemon">My Pokemon</a>
   <a href="#shuffle" id="shuffle">Shuffle</a>
-  <div class="dropdown">
-    <button class="dropbtn">Choose a Type
+  <div class="dropdown" id="types-dropdown">
+    <button class="dropbtn" id="drop-button">Choose a Type
       <i class="fa fa-caret-down"></i>
     </button>
-    <div class="dropdown-content">
+    <div class="dropdown-content" id="type-dropdown-content">
       <a href="#type" class = "pokemon-type" data-music="assets/default_theme.mp3">Random</a>
       <a href="#type" class = "pokemon-type" data-music="assets/fire_theme.mp3">Fire</a>
       <a href="#type" class = "pokemon-type" data-music="assets/water_theme.mp3">Water</a>
@@ -76,7 +69,6 @@
   </div>
   <a id="logout" href="#about">Logout</a>
 </div>
-
 
 <!-- login div -->
 
@@ -159,7 +151,8 @@
     <script type="text/javascript" src="src/natures.js"></script>
     <script type="text/javascript" src="src/pokemons.js"></script>
     <script type="text/javascript" src="src/index.js"></script>
-
+    <link rel="stylesheet" href="src/index.css">
 
   </body>
+  <link rel="stylesheet" href="src/index.css">
 </html>

@@ -53,6 +53,7 @@ class TrainerPokemon {
     }
     //update a trainerpokemon instance's nickname based on form submission
     updatePokemonNickname(event) {
+        event.preventDefault()
         // [data-text-id='${id}']
         let nickname = event.target.querySelector("input").value
         let data = {

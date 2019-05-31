@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", loginPage)
 
-
 function loginPage(e){
   let form = document.getElementsByTagName('form')[0]
   form.addEventListener('submit', loginAccess)
@@ -47,28 +46,12 @@ let data = {
   })
 }
 
-
-
 function init(){
-<<<<<<< HEAD
-  setTimeout(function(){
-    Pokemon.all.forEach(pokemon => pokemon.assignNature()); }, 3000);
-
-    let logout = document.querySelector('#logout')
-    logout.addEventListener('click', logOut)
-
-      // logOut()
-
-  // let promise1 = Promise.resolve(Pokemon.all)
-   Promise.all([Pokemon.fetchPokemon(), Nature.fetchNatures(), Trainer.fetchTrainers()])
-
-  //shuffle current pokemon based on type
-  document.querySelector("#shuffle").addEventListener("click", function() {
-
+  //logs user out
+  document.querySelector('#logout').addEventListener('click', logOut)
   //ensure pokemon, trainer, and nature objects are created, then assign natures to pokemon
   Promise.all([Pokemon.fetchPokemon(), Nature.fetchNatures(), Trainer.fetchTrainers()])
   .then(responses => responses[0].forEach(pokemon => pokemon.assignNature()))
-
 
   //shuffle current pokemon based on page type
   document.querySelector("#shuffle").addEventListener("click", function() {
