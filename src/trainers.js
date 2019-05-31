@@ -1,12 +1,14 @@
 class Trainer{
+  //constructor for trainer instance object
   constructor(trainer){
     this.id = trainer.id
     this.name = trainer.name
     this.username = trainer.username
     Trainer.all.push(this)
   }
-
+  //see the logged in trainer's trainerpokemon in the DOM
   seeMyPokemon() {
+    if(TrainerPokemon.all.length > 0) {
     document.querySelector("#audio").src = "assets/pokedex_theme.mp3"
     let pokemonModal = document.createElement("div")
     pokemonModal.classList.add("bg-modal-pokemon-info")
@@ -50,7 +52,7 @@ class Trainer{
       releaseButton.dataset.id = pokemon.id
       pokemonNickname.dataset.textId = pokemon.id
       pokemonAbility.innerText = `Ability: ${pokemon.ability}`
-      pokemonType.innerText = `Type: ${pokemon.type_1}/${pokemon.type_2}`
+      pokemonType.innerText = pokemon.type_2 ? `Type 1: ${pokemon.type_1}/${pokemon.type_2}` : `Type 1: ${pokemon.type_1}`
       pokemonNature.innerText = `Nature: ${pokemon.nature}`
       pokemonNickname.innerText = `Nickname: ${pokemon.nickname}`
       pokemonNickname.id = "pokemon-nickname"
@@ -70,6 +72,7 @@ class Trainer{
     })
     document.body.appendChild(pokemonModal)
   }
+}
 
 
 

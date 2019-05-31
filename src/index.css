@@ -322,3 +322,30 @@ body.Normal {
   background:url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ffb84525-0a95-4815-a92a-5c9f3ade809d/d6l5kxa-ae46ffd3-4cfb-4f2e-9c5f-a592df6adb59.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2ZmYjg0NTI1LTBhOTUtNDgxNS1hOTJhLTVjOWYzYWRlODA5ZFwvZDZsNWt4YS1hZTQ2ZmZkMy00Y2ZiLTRmMmUtOWM1Zi1hNTkyZGY2YWRiNTkucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.-IHqGXwUkrZtjSsdP-4s2Z4H8WYx0mS0c8Rsnq15wow)no-repeat center center fixed;
   background-size: cover;
 }
+
+.bg-modal-about-info {
+  background-color: rgba(0, 0, 0, 0.4);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.modal-content-about {
+  background:url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/159d6d33-5d73-4b2d-94cb-3fca673ed674/d6dhp0n-70379ec8-b473-4ff2-b532-bec1ebab0859.jpg/v1/fill/w_800,h_500,q_75,strp/simple_young_pokemon_background__1680x1050__by_kiss_d6dhp0n-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTAwIiwicGF0aCI6IlwvZlwvMTU5ZDZkMzMtNWQ3My00YjJkLTk0Y2ItM2ZjYTY3M2VkNjc0XC9kNmRocDBuLTcwMzc5ZWM4LWI0NzMtNGZmMi1iNTMyLWJlYzFlYmFiMDg1OS5qcGciLCJ3aWR0aCI6Ijw9ODAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.SxQtAR-ZeC8phSgXXXIFpeWOLxlxEjCtsxXalRFEfhI)no-repeat center center fixed;
+  background-size:auto;
+  background-position: center;
+	height: 300px;
+	width: 500px;
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	border-radius: 4px;
+  overflow:scroll;
+  border:1px solid black;
+}
