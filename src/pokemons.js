@@ -44,9 +44,11 @@ class Pokemon {
     catchButton.innerText = "Catch this Pokemon!"
     catchButton.classList.add("pokemonshow-form-btn")
     pokemonModalImage.src = this.sprite_image
-    if (this.shiny = "true") {
-      modal.style.animation = "slide 1s infinite 3s"
-      // modal.style.transform = "translateX(100%)"
+    //shiny stuff
+    if (this.shiny === "yes") {
+      let shinyListItem = document.createElement("li")
+      shinyListItem.innerText = "⭐"
+      pokemonModalList.appendChild(shinyListItem)
     }
 
     //append modal elements

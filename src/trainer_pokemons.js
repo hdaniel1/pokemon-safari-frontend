@@ -1,6 +1,6 @@
 class TrainerPokemon {
   //trainerpokemon object instance constructor
-  constructor(id, nickname, species, nature, type_1, type_2, ability, image) {
+  constructor(id, nickname, species, nature, type_1, type_2, ability, image, shiny) {
     this.id = id
     this.nickname = nickname
     this.species = species
@@ -9,6 +9,7 @@ class TrainerPokemon {
     this.type_2 = type_2
     this.ability = ability
     this.image = image
+    this.is_shiny = shiny
     TrainerPokemon.all.push(this)
   }
   //remove trainerpokemon object from DOM and record from DB

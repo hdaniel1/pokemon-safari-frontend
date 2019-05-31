@@ -49,6 +49,13 @@ class Trainer{
       pokemonInfo.classList.add("pokemon-info")
       pokemonDiv.classList.add("pokemon-info-div")
 
+      //shiny stuff
+      if (pokemon.is_shiny === "yes") {
+        let shinyListItem = document.createElement("li")
+        shinyListItem.innerText = "⭐"
+        pokemonInfo.appendChild(shinyListItem)
+      }
+
       releaseButton.innerText = "Release"
       releaseButton.dataset.id = pokemon.id
       releaseButton.classList.add("pokemonshow-form-btn")
@@ -93,7 +100,8 @@ class Trainer{
                             pokemon.pokemon.type_1,
                             pokemon.pokemon.type_2,
                             pokemon.pokemon.ability,
-                            pokemon.pokemon.shiny_sprite)
+                            pokemon.pokemon.shiny_sprite,
+                            "yes")
         }
         else{
         new TrainerPokemon(pokemon.id,
