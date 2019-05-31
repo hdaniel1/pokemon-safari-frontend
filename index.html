@@ -4,11 +4,33 @@
     <title>Pokemon Safari</title>
     <link id="page_favicon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAD3AAgEAAD39/cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIiIgAAAAAjMzMzIAAAAjMzMzMyAAACMzMjMzIAAAIiIjIiIgAAAhERIRESAAACERERERIAAAIREREREgAAACEREREgAAAAAiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AADwHwAA4A8AAMAHAADABwAAwAcAAMAHAADABwAAwAcAAOAPAADwHwAA//8AAP//AAD//wAA" rel="icon" type="image/x-icon" />
     <meta charset="utf-8">
-    <script type="text/javascript" src="src/trainer_pokemons.js"></script>
-    <script type="text/javascript" src="src/trainers.js"></script>
-    <script type="text/javascript" src="src/natures.js"></script>
-    <script type="text/javascript" src="src/pokemons.js"></script>
-    <script type="text/javascript" src="src/index.js"></script>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
+
+
     <link rel="stylesheet" href="src/index.css">
   </head>
   <body data-music="assets/default_theme.mp3">
@@ -17,7 +39,7 @@
       <source src="assets/route_120.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio> -->
-<div class="navbar">
+<div class="navbar" style="display:none;">
   <a href="#about">About</a>
   <a href="#my-pokemon" class="iframe" id="my-pokemon">My Pokemon</a>
   <a href="#shuffle" id="shuffle">Shuffle</a>
@@ -47,8 +69,40 @@
       <a href="#type" class = "pokemon-type" data-music="assets/poison_theme.mp3">Poison</a>
     </div>
   </div>
+  <a id="logout" href="#about">Logout</a>
 </div>
-    <main>
+
+
+<!-- login div -->
+
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100 p-t-85 p-b-20">
+      <form class="login100-form validate-form">
+        <span class="login100-form-title p-b-70">
+          Welcome Pokemon Fans
+        </span>
+        <span class="login100-form-avatar">
+          <img src="images/pokemonlogo.png" alt="POKEMON-LOGO">
+        </span>
+
+        <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
+          <input class="input100" type="text" name="username">
+          <span class="focus-input100" data-placeholder="Username"></span>
+        </div>
+
+        <div class="container-login100-form-btn">
+          <button class="login100-form-btn">
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- end of login div -->
+    <main style="display: none;">
       <div id="title">
         <img src="https://fontmeme.com/permalink/190528/5a790fdb6901318156ff4c1d4ecebc8d.png" />
       </div>
@@ -72,7 +126,35 @@
 		          <div class="close">+</div>
       </div>
     </div>
-      <div class="wrapper" id="pokemon_container"</div>
+      <div class="wrapper" id="pokemon_container"></div>
     </main>
+    <!-- login js  -->
+
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
+
+<!-- end of login js -->
+
+    <script type="text/javascript" src="src/trainer_pokemons.js"></script>
+    <script type="text/javascript" src="src/trainers.js"></script>
+    <script type="text/javascript" src="src/natures.js"></script>
+    <script type="text/javascript" src="src/pokemons.js"></script>
+    <script type="text/javascript" src="src/index.js"></script>
+
+
   </body>
 </html>
