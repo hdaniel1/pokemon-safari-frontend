@@ -1,6 +1,9 @@
 #title {
   padding-top: 50px;
 }
+html {
+  font-family: 'Aclonica', sans-serif;
+}
 
 body {
  margin: auto;
@@ -143,7 +146,7 @@ body {
 	text-align: center;
 	padding: 20px;
 	position: relative;
-	border-radius: 4px;
+	border-radius: 15px;
   overflow:scroll;
 }
 
@@ -161,7 +164,7 @@ input {
 	top: 0;
 	right: 10px;
 	font-size: 42px;
-	color: red;
+	color: white;
 	transform: rotate(45deg);
 	cursor: pointer;
 	&:hover {
@@ -345,7 +348,8 @@ body.Normal {
 	text-align: center;
 	padding: 20px;
 	position: relative;
-	border-radius: 4px;
+	border-radius: 15%;
+  font-size:12px;
   overflow:scroll;
   border:1px solid black;
 }

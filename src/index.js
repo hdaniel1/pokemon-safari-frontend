@@ -96,6 +96,7 @@ function init(){
     aboutClose.innerText = "+"
     aboutModal.classList.add("bg-modal-about-info")
     aboutModalContent.classList.add("modal-content-about")
+    aboutModalContent.classList.add("w3-animate-zoom")
     aboutModal.style.display = "flex"
     aboutModalContent.innerHTML = "Welcome to the Pokemon Safari app.<br><br> To get started click any pokemon sprite to see that pokemon's info. Click \"catch\" to add that pokemon to your pokedex.<br><br> You can also change the type of the pokemon shown using the type dropdown, as well as shuffle the current pokemon shown by clicking \"Shuffle\".<br><br> To view your pokedex, click \"My Pokemon\", where you can add a nickname or release your pokemon."
     //append elements

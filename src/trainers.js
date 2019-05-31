@@ -14,6 +14,7 @@ class Trainer{
     pokemonModal.classList.add("bg-modal-pokemon-info")
     let pokemonModalContent = document.createElement("div")
     pokemonModalContent.classList.add("modal-content")
+    pokemonModalContent.classList.add("w3-animate-zoom")
     let pokemonClose = document.createElement("div")
     let pokemonModalBody = document.createElement("div")
     pokemonClose.classList.add("close")
@@ -50,15 +51,17 @@ class Trainer{
 
       releaseButton.innerText = "Release"
       releaseButton.dataset.id = pokemon.id
+      releaseButton.classList.add("pokemonshow-form-btn")
       pokemonNickname.dataset.textId = pokemon.id
       pokemonAbility.innerText = `Ability: ${pokemon.ability}`
       pokemonType.innerText = pokemon.type_2 ? `Type 1: ${pokemon.type_1}/${pokemon.type_2}` : `Type 1: ${pokemon.type_1}`
       pokemonNature.innerText = `Nature: ${pokemon.nature}`
-      pokemonNickname.innerText = `Nickname: ${pokemon.nickname}`
+      pokemonNickname.innerText = pokemon.nickname ? `Nickname: ${pokemon.nickname}` : `Nickname: N/A`
       pokemonNickname.id = "pokemon-nickname"
       pokemonModalTitle.innerText = pokemon.species
       pokemonImage.src = pokemon.image
       pokemonNicknameFormButton.innerText = "Update Nickname"
+      pokemonNicknameFormButton.classList.add("pokemonshow-form-btn")
 
       pokemonInfo.append(pokemonNicknameFormButton, pokemonNickname,pokemonAbility, pokemonType, pokemonNature)
       pokemonModalHeader.append(pokemonModalTitle, pokemonImage, pokemonInfo, releaseButton)
@@ -82,14 +85,26 @@ class Trainer{
     .then(resp => resp.json())
     .then(pokemons => pokemons.forEach(pokemon => {
       if (pokemon.trainer_id === 1) {
-        new TrainerPokemon (pokemon.id,
+        if (pokemon.is_shiny === true) {
+          new TrainerPokemon(pokemon.id,
                             pokemon.nickname,
                             pokemon.pokemon.species,
                             pokemon.nature,
                             pokemon.pokemon.type_1,
                             pokemon.pokemon.type_2,
                             pokemon.pokemon.ability,
-                            pokemon.pokemon.sprite_image)
+                            pokemon.pokemon.shiny_sprite)
+        }
+        else{
+        new TrainerPokemon(pokemon.id,
+                          pokemon.nickname,
+                          pokemon.pokemon.species,
+                          pokemon.nature,
+                          pokemon.pokemon.type_1,
+                          pokemon.pokemon.type_2,
+                          pokemon.pokemon.ability,
+                          pokemon.pokemon.sprite_image)
+        }
       }
     }))
   }

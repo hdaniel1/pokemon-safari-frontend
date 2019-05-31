@@ -1,12 +1,13 @@
 class Pokemon {
   //pokemon object instance constructor
-  constructor(pokemon) {
-    this.id = pokemon.id
-    this.species = pokemon.species
-    this.type_1 = pokemon.type_1
-    this.type_2 = pokemon.type_2
-    this.ability = pokemon.ability
-    this.sprite_image = pokemon.sprite_image
+  constructor(id, species, type_1, type_2, ability, sprite_image, shiny) {
+    this.id = id
+    this.species = species
+    this.type_1 = type_1
+    this.type_2 = type_2
+    this.ability = ability
+    this.sprite_image = sprite_image
+    this.shiny = shiny
     Pokemon.all.push(this)
   }
   //show wild pokemon info in modal box
@@ -41,7 +42,12 @@ class Pokemon {
     pokemonLiAbility.innerHTML= `Ability: ${this.ability}`
     pokemonLiType1.innerHTML = this.type_2 ? `Type 1: ${this.type_1}/${this.type_2}` : `Type 1: ${this.type_1}`
     catchButton.innerText = "Catch this Pokemon!"
+    catchButton.classList.add("pokemonshow-form-btn")
     pokemonModalImage.src = this.sprite_image
+    if (this.shiny = "true") {
+      modal.style.animation = "slide 1s infinite 3s"
+      // modal.style.transform = "translateX(100%)"
+    }
 
     //append modal elements
     pokemonModalHeader.prepend(pokemonSpecies, pokemonModalImage)
@@ -65,7 +71,8 @@ class Pokemon {
     let data = {
       trainer_id: trainer.id,
       pokemon_id:pokemon.id,
-      nature:pokemon.nature
+      nature:pokemon.nature,
+      is_shiny:pokemon.shiny
     }
     //make fetch post request to DB
     fetch("http://localhost:3000/trainer_pokemons", {
@@ -77,14 +84,31 @@ class Pokemon {
       body: JSON.stringify(data)
     })
     .then(response => response.json())
-    .then(pokemon => new TrainerPokemon(pokemon.id,
-                                        pokemon.nickname,
-                                        pokemon.pokemon.species,
-                                        pokemon.nature,
-                                        pokemon.pokemon.type_1,
-                                        pokemon.pokemon.type_2,
-                                        pokemon.pokemon.ability,
-                                        pokemon.pokemon.sprite_image))
+    .then(pokemon =>  {
+              alert("Successfully Caught!")
+              e.target.remove()
+              if (pokemon.is_shiny === true) {
+                new TrainerPokemon(pokemon.id,
+                                  pokemon.nickname,
+                                  pokemon.pokemon.species,
+                                  pokemon.nature,
+                                  pokemon.pokemon.type_1,
+                                  pokemon.pokemon.type_2,
+                                  pokemon.pokemon.ability,
+                                  pokemon.pokemon.shiny_sprite)
+              }
+              else{
+              new TrainerPokemon(pokemon.id,
+                                pokemon.nickname,
+                                pokemon.pokemon.species,
+                                pokemon.nature,
+                                pokemon.pokemon.type_1,
+                                pokemon.pokemon.type_2,
+                                pokemon.pokemon.ability,
+                                pokemon.pokemon.sprite_image)
+              }
+      }
+    )
   }
   //render pokemon object to DOM
   render(event) {
@@ -108,8 +132,15 @@ class Pokemon {
     .then(response => response.json())
     .then(pokemons => {
         pokemons.forEach(pokemon => {
-        let pokemonInstance = new Pokemon(pokemon)
-        pokemonInstance.render()
+          //35% chance for shiny
+          if ((Math.random() * 100) < 35) {
+            let pokemonInstance = new Pokemon(pokemon.id, pokemon.species, pokemon.type_1, pokemon.type_2, pokemon.ability, pokemon.shiny_sprite, "true")
+            pokemonInstance.render()
+          }
+          else {
+            let pokemonInstance = new Pokemon(pokemon.id, pokemon.species, pokemon.type_1, pokemon.type_2, pokemon.ability, pokemon.sprite_image, "false")
+            pokemonInstance.render()
+          }
     })
         return Pokemon.all})
   }
@@ -119,8 +150,15 @@ class Pokemon {
     .then(response => response.json())
     .then(pokemons => {
         pokemons.forEach(pokemon => {
-        let pokemonInstance = new Pokemon(pokemon)
-        pokemonInstance.render()
+          //35% chance for shiny
+          if ((Math.random() * 100) < 35) {
+            let pokemonInstance = new Pokemon(pokemon.id, pokemon.species, pokemon.type_1, pokemon.type_2, pokemon.ability, pokemon.shiny_sprite, "yes")
+            pokemonInstance.render()
+          }
+          else {
+            let pokemonInstance = new Pokemon(pokemon.id, pokemon.species, pokemon.type_1, pokemon.type_2, pokemon.ability, pokemon.sprite_image, "no")
+            pokemonInstance.render()
+          }
     })
         return Pokemon.all})
 }
