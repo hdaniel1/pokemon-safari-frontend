@@ -1,4 +1,4 @@
-Pokemon Safari
+<H1>Pokemon Safari</H1>
 
 Pokemon Safari is an app that attempts to simulate the age old adage of "Gotta Catch 'Em All".  
 
