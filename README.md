@@ -9,3 +9,7 @@ Keep an eye out for shinies!
 Backend here:
 
 https://github.com/hdaniel1/pokemon-safari-backend
+
+Demo here:
+
+https://www.youtube.com/watch?v=FtFIG0QTF98&t=13s
